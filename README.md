@@ -23,4 +23,4 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 - *Database*: PostgreSQL / MySQL
 
 ## Team
-- *Team Members*: [Balba Tudor-Neculai], [Raul Jac-Anton]
+- *Team Members*: Balba Tudor-Neculai, Raul Jac-Anton
