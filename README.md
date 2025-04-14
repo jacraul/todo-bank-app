@@ -27,6 +27,6 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 
 ## Tasks
 - Task1: Select the theme and the story for the project
-- Task2: Research for the project, interviews with other teams[Task2/Questions wp 2.pdf], UX persona[Task2/WP 2 UX Persona.pdf] + Figma 
+- Task2: Research for the project, interviews with other teams(Task2/Questions wp 2.pdf), UX persona[Task2/WP 2 UX Persona.pdf] + Figma 
 - Task3: Transform the user stories in Trello cards
 - Task4: Start programming in Springboot 
