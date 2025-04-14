@@ -23,4 +23,10 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 - *Database*: PostgreSQL / MySQL
 
 ## Team
-- *Team Members*: Balba Tudor-Neculai, Raul Jac-Anton
+- *Team Members*: Balba Tudor-Neculai, Raul Jac-Anton (team leader)
+
+## Tasks
+- Task1: Select the theme and the story for the project
+- Task2: Research for the project, interviews with other teams, UX persona + Figma 
+- Task3: Transform the user stories in Trello cards
+- Task4: Start programming in Springboot 
