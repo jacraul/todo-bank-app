@@ -19,8 +19,8 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 
 ## Tech Stack
 - *Backend*: Spring Boot (Java), Spring Security
-- *Frontend*: React.js / Angular (to be decided), Bootstrap
-- *Database*: PostgreSQL / MySQL
+- *Frontend*: React.js, Bootstrap
+- *Database*: MySQL
 
 ## Team
 - *Team Members*: Balba Tudor-Neculai, Raul Jac-Anton (team leader)
