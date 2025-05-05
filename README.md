@@ -28,5 +28,5 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 ## Tasks
 - Task1: Select the theme and the story for the project
 - Task2: Research for the project, [interviews with other teams](https://github.com/jacraul/todo-bank-app/blob/main/Task2/Questions%20wp%202.pdf), [UX persona](https://github.com/jacraul/todo-bank-app/blob/main/Task2/WP%202%20UX%20Persona.pdf) + [Figma](https://www.figma.com/design/357paxEJ7KotsSdS4e5gcx/WP2?node-id=0-1&t=FkIOvNTZuCsagn7g-1) 
-- Task3: Transform the user stories in Trello cards
+- Task3: [Transform the user stories in Trello cards](https://trello.com/b/cUTNwN3y)
 - Task4: Start programming in Springboot 
