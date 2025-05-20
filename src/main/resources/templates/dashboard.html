@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard - ToDo Bank</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<style>
+    .operation{
+        text-decoration: none;
+        display: block;
+        padding: 8px 16px;
+        margin: 8px 0;
+    }
+</style>
+<body>
+    <div class="container">
+        <nav class="main-nav" style="background-color: #1973EB;color:white; border-radius:10px">
+            <a href="/"><img src="/img/logowhite.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+
+            <ul>
+                <li><a  href="/transfer">Quick Transfer</a></li>
+                <li><a  href="/profile">User settings</a></li>
+            </ul>
+        </nav>
+        <br><br>
+        <H3 style="text-align: center">Hello, <span th:text="${firstName}">User 👋</span></H3>
+        <br>
+        <div th:each="account : ${accounts}" class="account" style="margin-bottom: 20px">
+            <table style="width: 100%">
+                <tr style="margin-bottom: 10px">
+                    <td style="width: 100px">
+                        <img src="/img/card.png" alt="Card" style="width: 100px; height: auto;">
+                    </td>
+                    <td style="width: 40%">
+                        <h3 th:text="'ToDo Account no ' + ${account.id}">ToDo Account</h3>
+                        <p style="font-size:40px;font-weight: bold"> LEI <span th:text="${account.balance}">0.00</span> </p>
+                        <p>Account Number: <span style="font-weight: bold" th:text="${account.accountNumber}">0000000000</span></p>
+                    </td>
+                    <td style="width: 40%">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="width: 100%">
+                                    <a class="operation" th:href="@{'/accountdocument/' + ${account.id}}">⊕ Account Confirmation</a>
+                                    <a class="operation" th:href="@{'/transfer'}">⊕ Transfer</a>
+                                    <a class="operation" th:href="@{'/reports'}">⊕ Report</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>

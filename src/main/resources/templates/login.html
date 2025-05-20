@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ToDo Bank</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="container">
+    <nav class="main-nav">
+        <a href="/"><img src="/img/logo.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+        <ul>
+            <li><a th:href="@{/request}" href="/request">Request Account</a></li>
+            <li class="todo24"><a th:href="@{/login}" href="/login">ToDo24</a></li>
+        </ul>
+    </nav>
+    <hr style="width: 80%; height: 1px; background-color: rgba(0,0,0,0.54); margin: 0 auto;">
+    <br>
+    <div class="login">
+
+    <h1>Login</h1>
+    <!-- This form posts credentials to Spring Security's default login processing URL (/login) -->
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Email:</label><br>
+            <input type="email" id="username" name="username" placeholder="example@example.com" required />
+        </div>
+        <div>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="********" required />
+        </div>
+
+        <div>
+            <button type="submit" class="loginbtn">Login</button>
+        </div>
+    </form>
+    <!-- Display errors or logout messages if applicable -->
+    <div th:if="${param.error}">
+        <p style="color: red;">Invalid username or password.</p>
+    </div>
+    <div th:if="${param.logout}">
+        <p style="color: green;">You have been logged out.</p>
+    </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register - ToDo Bank</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <nav class="main-nav">
+        <a href="/"><img src="/img/logo.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+
+        <ul>
+            <li><a th:href="@{/request}" href="/request">Request Account</a></li>
+            <li class="todo24"><a th:href="@{/login}" href="/login">ToDo24</a></li>
+        </ul>
+    </nav>
+    <hr style="width: 80%; height: 1px; background-color: rgba(0,0,0,0.54); margin: 0 auto;">
+    <br>
+    <h2>#JOIN_US</h2>
+    <p>This is the registration form for opening an account at our bank. After requesting, an operator will review your application and will approve or decline your account, depending on the information given by you.</p>
+    <i>Check your email account, you will find the answer that from no.reply.todobank@gmail.com</i>
+    <br><br>
+    <div class="login">
+
+        <h1>Request Account</h1>
+<!-- This form posts registration data to your backend endpoint -->
+<form th:object="${user}" th:action="@{/register}"  method="post">
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}" placeholder="First Name" required />
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" placeholder="Last Name" required />
+    </div>
+    <div>
+        <label>Personal Number (13 digits):</label>
+        <input type="text" th:field="*{personalNumber}" pattern="\d{13}" placeholder="13 digits" required />
+    </div>
+    <div>
+        <label>Phone Number:</label>
+        <input type="text"th:field="*{phone}" name="phone" required />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" th:field="*{email}" placeholder="Email" required />
+    </div>
+    <div>
+        <label>Occupation:</label>
+        <input type="text" th:field="*{occupation}" name="occupation" required />
+    </div>
+    <div>
+        <label>Monthly Salary:</label>
+        <input type="number" th:field="*{monthlySalary}" name="monthlySalary" required />
+    </div>
+    <p>By clicking the "Request account" button you agree to use your data in processing your application form for opening a bank account.</p>
+    <button type="submit" class="loginbtn">Request account</button>
+</form>
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div class="footer">
+    <table style="width:90%; text-align: center; vertical-align: top">
+        <tr>
+            <td style="width: 25%;vertical-align: top">
+                <h3><b>About Us</b></h3>
+                <p>ToDo in Romania</p>
+                <p>Press</p>
+                <p>ATMs</p>
+                <p>Career</p>
+                <p>Contact</p>
+
+            </td>
+            <td style="width: 25%;vertical-align: top">
+                <h3><b>Legal</b></h3>
+                <p>Documents</p>
+                <p>Terms & Conditions</p>
+                <p>GDPR</p>
+                <p>Promotions</p>
+                <p>Petitions</p>
+
+            </td>
+            <td style="width: 25%;vertical-align: top">
+                <h3><b>Useful</b></h3>
+                <p>Exchange</p>
+                <p>Cut off time</p>
+
+            </td>
+            <td style="width: 25%;vertical-align: top">
+                <h3><b>Download the app</b></h3>
+                <img src="/img/store.jpg" width=100px>
+            </td>
+        </tr>
+    </table>
+
+    <p></p>
+
+</div>
+<br><br>
+</body>
+</html>
+

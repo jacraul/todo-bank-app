@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+
+.montserrat-text {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 1200px;          /* Sets a maximum width for the container */
+    margin: 0 auto;             /* Centers the container */
+    padding: 0 20px;            /* Optional: adds padding to the sides */
+    margin-top: 30px;
+}
+
+.main-nav {
+    display: flex;               /* Enables flexbox on the nav */
+    justify-content: space-between; /* Pushes the logo and the ul to opposite ends */
+    align-items: center;         /* Vertically centers the content */
+    padding: 10px 20px;          /* Optional: adjust padding as needed */
+}
+
+.main-nav ul {
+    list-style: none;            /* Removes default bullet styling */
+    display: flex;               /* Displays the list items in a row */
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li {
+    margin-left: 20px;
+    border-radius: 5px;
+    padding: 10px 15px;         /* Adds padding around the list items */
+}
+
+.todo24{
+    background-color:#1973EB;
+    color:white;
+}
+
+.main-nav ul li:hover, .todo24:hover {
+    background-color: rgba(240, 240, 240, 0.67);  /* Optional: adds a hover effect */
+    transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; /* Optional: adds a shadow effect */
+    color: black;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-weight: 800;
+}
+
+.login{
+    background-color:#1973EB;
+    color:white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+.login label{
+    font-weight: 400;
+}
+
+.login input{
+    border: 1px solid #1973EB;
+    border-radius: 5px;
+    padding: 10px;
+    width: 95%;
+    margin-bottom:10px;
+}
+
+.loginbtn{
+    background-color:white;
+    color:#1973EB;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.account{
+    background: rgba(25, 115, 235, 0.46);
+    color:black;
+    padding: 20px 30px;
+    border-radius: 10px;
+}

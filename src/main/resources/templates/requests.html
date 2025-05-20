@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Request Details - ToDo Bank</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        .request-details {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-activate {
+            background-color: #28a745;
+        }
+        .btn-deactivate {
+            background-color: #dc3545;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .user-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="main-nav" style="background-color: #1973EB;color:white; border-radius:10px">
+        <a href="/"><img src="/img/logowhite.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+    </nav>
+
+    <div class="request-details">
+        <h2>User Request Details</h2>
+
+        <div class="user-info">
+            <p><strong>Request ID:</strong> <span th:text="${user.id}"></span></p>
+            <p><strong>Full Name:</strong> <span th:text="${user.firstName + ' ' + user.lastName}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${user.active ? 'Active' : 'Inactive'}"></span></p>
+        </div>
+
+        <form th:if="${!user.active}" th:action="@{'/admin/activate/' + ${user.id}}" method="post">
+            <button type="submit" class="btn btn-activate">Activate User</button>
+        </form>
+
+        <form th:if="${user.active}" th:action="@{'/admin/deactivate/' + ${user.id}}" method="post">
+            <button type="submit" class="btn btn-deactivate">Deactivate User</button>
+        </form>
+
+        <a href="/admin" class="btn" style="background-color: #1973EB; text-decoration: none; display: inline-block; margin-top: 20px;">
+            Back to Admin Panel
+        </a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Administration - ToDo Bank</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .search-section {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        margin: 20px 0;
+    }
+
+    .search-section h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .search-section form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .search-section input {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    .search-section button {
+        background: #1973EB;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .search-section button:hover {
+        background: #1557b0;
+    }
+
+    .results-section {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        margin-top: 20px;
+    }
+
+    .results-section h3 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .message {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        color: #666;
+    }
+
+    .account-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: transform 0.2s;
+    }
+
+    .account-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .account-details h4 {
+        color: #1973EB;
+        margin: 0 0 15px 0;
+        font-size: 18px;
+    }
+
+    .account-details p {
+        margin: 8px 0;
+        color: #555;
+    }
+
+    .account-details span {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .account-details button {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background 0.3s;
+    }
+
+    .account-details button:hover:not([disabled]) {
+        background: #c82333;
+    }
+
+    .account-details button[disabled] {
+        background: #6c757d;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .warning {
+        color: #dc3545;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    .status-active {
+        color: #28a745;
+        background: #e8f5e9;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    .status-inactive {
+        color: #dc3545;
+        background: #fbe9e7;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+        .search-section form {
+            flex-direction: column;
+        }
+
+        .search-section button {
+            width: 100%;
+        }
+    }
+</style>
+<body>
+<div class="container">
+    <nav class="main-nav" style="background-color: #1973EB;color:white; border-radius:10px">
+        <a href="/"><img src="/img/logowhite.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+
+        <ul>
+            <li><a href="/admin">Requests</a></li>
+            <li><a href="/admin/accounts">Accounts</a></li>
+            <li><a href="/admin/cashoperations">Cash operations</a></li>
+            <li><a href="/admin/clients">Clients</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="search-section">
+        <h2>Account Search</h2>
+        <form th:action="@{/admin/accounts/search}" method="GET">
+            <input type="text" name="personalNumber" id="personalNumber" placeholder="Enter Personal Number" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div th:if="${accounts}" class="results-section">
+        <h3>Search Results</h3>
+        <div th:if="${accounts.empty}" class="message">No accounts found.</div>
+
+        <div th:if="${!accounts.empty}" th:each="account : ${accounts}" class="account-card">
+            <div class="account-details">
+                <h4 th:text="${account.accountNumber}"></h4>
+                <p>Type: <span th:text="${account.accountType}"></span></p>
+                <p>Balance: <span th:text="${#numbers.formatDecimal(account.balance, 1, 2)} + ' RON'"></span></p>
+                <p>Status: <span th:text="${account.active ? 'Active' : 'Inactive'}"></span></p>
+
+                <form th:if="${account.active}" th:action="@{/admin/accounts/deactivate}" method="POST" style="display: inline;">
+                    <input type="hidden" name="accountNumber" th:value="${account.accountNumber}">
+                    <input type="hidden" name="personalNumber" th:value="${param.personalNumber}">
+                    <button type="submit" th:disabled="${account.balance > 0}"
+                            onclick="return confirm('Are you sure you want to deactivate this account?');">
+                        Deactivate
+                    </button>
+                </form>
+                <p th:if="${account.balance > 0}" class="warning">Cannot deactivate: Non-zero balance</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

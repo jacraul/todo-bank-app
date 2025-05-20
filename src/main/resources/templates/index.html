@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo Bank - Home</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<header>
+
+</header>
+<div class="container">
+    <nav class="main-nav">
+        <a href="/"><img src="/img/logo.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+
+        <ul>
+            <li><a th:href="@{/requestAccount}" href="/requestAccount">Request Account</a></li>
+            <li class="todo24"><a th:href="@{/login}" href="/login">ToDo24</a></li>
+        </ul>
+    </nav>
+
+    <hr style="width: 80%; height: 1px; background-color: rgba(0,0,0,0.54); margin: 0 auto;">
+    <br>
+
+    <div class="data">
+        <img src="/img/campaign.jpg" style="max-width: 1000px; width: 90%; margin: 0 auto; display: block; border-radius: 10px" alt="">
+        <br>
+        <h2 style="text-align: center">What can you do with ToDo?</h2><br>
+        <img src="/img/index1.png" style="max-width: 400px; width: 100%; margin: 0 auto; display: block; border-radius: 10px" alt="">
+        <br>
+        <div class="gray" style="background-color: rgba(128,128,128,0.2); padding: 10px 10px;">
+            <h2 style="text-align: center; color:#1973EB">Simplified banking</h2><br>
+            <img src="/img/index2.png" style="max-width: 500px; width: 100%; margin: 0 auto; display: block; border-radius: 10px" alt="">
+        </div>
+        <br>
+        <div class="gray" style="background-color: rgba(25,115,235,0.32); padding: 10px 10px;">
+            <h2 style="text-align: center; color:#1973EB">NOW: ToDo Debit Card</h2><br>
+            <img src="/img/index3.png" style="max-width: 500px; width: 100%; margin: 0 auto; display: block; border-radius: 10px" alt="">
+        </div>
+
+    </div>
+    <br><br><br>
+    <div class="footer">
+        <table style="width:90%; text-align: center; vertical-align: top">
+            <tr>
+                <td style="width: 25%;vertical-align: top">
+                    <h3><b>About Us</b></h3>
+                    <p>ToDo in Romania</p>
+                    <p>Press</p>
+                    <p>ATMs</p>
+                    <p>Career</p>
+                    <p>Contact</p>
+
+                </td>
+                <td style="width: 25%;vertical-align: top">
+                    <h3><b>Legal</b></h3>
+                    <p>Documents</p>
+                    <p>Terms & Conditions</p>
+                    <p>GDPR</p>
+                    <p>Promotions</p>
+                    <p>Petitions</p>
+
+                </td>
+                <td style="width: 25%;vertical-align: top">
+                    <h3><b>Useful</b></h3>
+                    <p>Exchange</p>
+                    <p>Cut off time</p>
+
+                </td>
+                <td style="width: 25%;vertical-align: top">
+                    <h3><b>Download the app</b></h3>
+                    <img src="/img/store.jpg" width=100px>
+                </td>
+            </tr>
+        </table>
+
+        <p></p>
+
+    </div>
+    <br>
+    <br>
+
+
+</div>
+
+
+</body>
+</html>

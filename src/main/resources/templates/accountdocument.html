@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Confirmation - ToDo Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-right: 30px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1973EB;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .content {
+            margin: 20px 0;
+        }
+
+        .account-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .account-table th,
+        .account-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .account-table th {
+            background-color: #f5f5f5;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-style: italic;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                margin: 20px;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            button.print-button {
+                display: none;
+            }
+        }
+
+        .print-button {
+            background: #1973EB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<button onclick="window.print()" class="print-button">Print Document</button>
+
+<div class="header">
+    <img src="/img/logo.png" alt="ToDo Bank Logo" class="logo">
+    <div class="title">ACCOUNT CONFIRMATION</div>
+</div>
+
+<div class="content">
+    <p>The client <strong th:text="${firstName} + ' ' + ${lastName}"></strong>
+        identified with personal number <strong th:text="${personalNumber}"></strong>
+        has the following account at our bank:</p>
+
+    <table class="account-table">
+        <tr>
+            <th>Account Number</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td th:text="${accountNumber}"></td>
+            <td th:text="${status}"></td>
+        </tr>
+    </table>
+
+    <p>We confirm that the account is valid at <strong th:text="${#temporals.format(currentDate, 'dd-MM-yyyy')}"></strong>.</p>
+</div>
+
+<div class="footer">
+    <p>This paper is valid without stamp and signature for 30 days since the emitted date.</p>
+</div>
+</body>
+</html>

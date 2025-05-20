@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Reports - ToDo Bank</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <nav class="main-nav" style="background-color: #1973EB;color:white; border-radius:10px">
+        <a href="/"><img src="/img/logowhite.png" alt="ToDo Bank Logo" style="width: 150px; height: auto;"></a>
+        <ul>
+            <li><a href="/transfer">Quick Transfer</a></li>
+            <li><a href="/profile">User settings</a></li>
+        </ul>
+    </nav>
+
+    <div class="reports-section">
+        <h2>Account Reports</h2>
+
+        <div class="form-group">
+            <label for="accountSelect">Select Account:</label>
+            <select id="accountSelect" onchange="loadTransactions()">
+                <option value="">Choose an account</option>
+                <option th:each="account : ${accounts}"
+                        th:value="${account.accountNumber}"
+                        th:text="${account.accountNumber + ' (Balance: ' + #numbers.formatDecimal(account.balance, 1, 2) + ' RON)'}">
+                </option>
+            </select>
+        </div>
+
+        <div id="transactionsTable" style="display: none;">
+            <h3>Transaction History</h3>
+            <table class="transactions-table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Balance After</th>
+                </tr>
+                </thead>
+                <tbody id="transactionsList">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="noTransactions" style="display: none;">
+            <p>No transactions found for this account.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadTransactions() {
+        const accountNumber = document.getElementById('accountSelect').value;
+        if (!accountNumber) {
+            document.getElementById('transactionsTable').style.display = 'none';
+            document.getElementById('noTransactions').style.display = 'none';
+            return;
+        }
+
+        fetch(`/api/transaction/list?accountNumber=${accountNumber}`)
+            .then(response => response.json())
+            .then(transactions => {
+                const tableBody = document.getElementById('transactionsList');
+                tableBody.innerHTML = '';
+
+                if (transactions.length === 0) {
+                    document.getElementById('transactionsTable').style.display = 'none';
+                    document.getElementById('noTransactions').style.display = 'block';
+                    return;
+                }
+
+                document.getElementById('transactionsTable').style.display = 'block';
+                document.getElementById('noTransactions').style.display = 'none';
+
+                transactions.forEach(transaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${new Date(transaction.transactionDate).toLocaleString()}</td>
+                        <td>${transaction.transactionType}</td>
+                        <td class="${transaction.transactionType === 'WITHDRAW' ? 'negative' : 'positive'}">
+                            ${transaction.transactionType === 'WITHDRAW' ? '-' : ''}${transaction.amount.toFixed(2)} RON
+                        </td>
+                        <td>${transaction.description || '-'}</td>
+                        <td>${transaction.balanceAfter.toFixed(2)} RON</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error loading transactions. Please try again.');
+            });
+    }
+</script>
+
+<style>
+
+    .reports-section {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin-top: 20px;
+    }
+
+    h2 {
+        color: #1973EB;
+        font-size: 24px;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+
+    h3 {
+        color: #2c3e50;
+        font-size: 20px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin: 25px 0;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2c3e50;
+        font-weight: 500;
+    }
+
+    select {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #2c3e50;
+        background-color: white;
+        transition: border-color 0.3s;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #1973EB;
+        box-shadow: 0 0 0 2px rgba(25, 115, 235, 0.1);
+    }
+
+    .transactions-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 20px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .transactions-table th {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+        color: #2c3e50;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .transactions-table td {
+        padding: 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #2c3e50;
+    }
+
+    .transactions-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .transactions-table tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .negative {
+        color: #dc3545;
+        font-weight: 500;
+    }
+
+    .positive {
+        color: #28a745;
+        font-weight: 500;
+    }
+
+    #noTransactions {
+        text-align: center;
+        padding: 30px;
+        color: #6c757d;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    .transactions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .transactions-table th,
+    .transactions-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .transactions-table th {
+        background-color: #f5f5f5;
+    }
+
+    .negative {
+        color: #dc3545;
+    }
+
+    .positive {
+        color: #28a745;
+    }
+
+    .form-group {
+        margin: 20px 0;
+    }
+
+    select {
+        padding: 8px;
+        width: 300px;
+    }
+</style>
+</body>
+</html>
