@@ -6,7 +6,6 @@ ToDo Bank is a modern banking web application focused on providing secure and in
 ## Features
 - *Transaction Approval with Adaptive Security*: Transactions may require additional verification based on risk assessment (e.g., AI-driven fraud detection, geolocation-based authorization).
 - *User Registration & Authentication*: Secure login and registration using Spring Security with encrypted passwords.
-- *Multi-Factor Authentication (MFA)*: Users can enable MFA via OTP (One-Time Passwords) or other secure methods.
 - *User Profile Management*: Edit account details and view transaction history.
 
 ## User Stories
@@ -19,7 +18,7 @@ As an admin, I want to manage user accounts, including activating/deactivating a
 
 ## Tech Stack
 - *Backend*: Spring Boot (Java), Spring Security
-- *Frontend*: React.js, Bootstrap
+- *Frontend*: HTML, CSS
 - *Database*: MySQL
 
 ## Team
